@@ -1,0 +1,109 @@
+p{
+	color: #f00;
+}
+html,body{
+	padding: 0;
+	margin:0;
+	background: #f2f2f2;
+	width: 100%;
+	height: 100%;
+}
+ul{
+	list-style: none;
+}
+/*头部*/
+	.header{padding-left: 30px;padding-right: 30px;}
+	.header h3{float: left;}
+	.header div{float: right;line-height: 60px;}
+
+/*侧边栏*/
+	.cont{
+		clear: both;
+		display: flex;
+	}
+	.coulum{
+		flex: 2;
+	}
+	.coulum li{
+		line-height: 2;
+		border: 1px solid #ddd;
+		padding-left: 12px;
+	}
+	.content{
+		flex: 10;
+	}
+/*内容表格*/
+	.content{overflow: hidden;}
+	table{
+		width: 70%;
+		text-align: center;
+		border-spacing: 0;
+		border-collapse: 0;
+		border: 1px #ccc solid;
+		margin-left: 30px;
+		margin-top: 10px;
+	}
+	table td{border: 1px #ccc solid;}
+	table thead td{line-height: 40px;}
+/*操作*/
+	.update,.detele,.add{
+		display: inline-block;
+		padding: 5px 10px;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		border: 1px solid #ccc;
+		color: #fff;
+		border-radius: 5px;
+	}
+	.add{background: #00d;margin-top: 20px;margin-left: 30px;}
+	.update{background: #98b5dc;}
+	.detele{background: #f00;}
+/*分页*/
+	.pagination{
+		display: block;
+		width: 70%;
+		margin-left: 30px;
+		text-align: right;
+		margin-top: 10px;
+		-webkit-padding-start: 0px;
+	}
+	.pagination li{
+		text-align: center;
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		border:1px solid #ccc;
+		border-radius: 5px;
+		color: #888;
+		text-decoration: none;
+		cursor: pointer;
+		margin-left: 5px;
+	}
+	.pagination li.active {
+		display: inline-block;
+	    border: 1px solid #60c4fd;
+	    color: #60c4fd;
+	}
+	.pagination li a{
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		color: #888;
+		text-decoration: none;
+	}
+/*排序*/
+	.sort input{
+		width: 30px;
+		text-align: center;
+	}
+	.sortSubmit{
+		text-align: center;
+		width: 70%;
+		margin-top: 20px;		
+	}
+	.sortSubmit input{
+		line-height: 2;
+		font-size: 18px;
+	}
+

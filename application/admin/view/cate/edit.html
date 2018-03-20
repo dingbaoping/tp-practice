@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>修改页</title>
+ <!-- 配置文件 -->
+    <script type="text/javascript" charset="utf-8" src="__STATIC__/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" charset="utf-8" src="__STATIC__/ueditor/ueditor.all.js"></script>
+   <script type="text/javascript" charset="utf-8" src="__STATIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+   <style type="text/css">
+   		.edui-default .edui-editor {
+		   top:10px;
+		   left:10px;
+		}
+   </style>
+</head>
+<body>
+	<form method="post" action="">
+		<input type="hidden" name="id" value="{$cates.id}">
+		<p>上级栏目：
+			<select name="pid">
+				<option value="0">顶级栏目</option>
+				{volist name="cateres" id='v'}
+					<option {if condition="$cates['pid'] eq $v['id']"}selected="selected"{/if} value="{$v.id}">{if condition="$v['level'] neq 0"}|{/if}<?php echo str_repeat('-',$v['level']*2);?>{$v.catename}</option>
+				{/volist}
+			</select>
+		</p>
+		<p>栏目名称：<input type="text" name="catename" id="catename" value="{$cates.catename}"></p>
+		<p>关键词：<input type="text" name="keywords" id="keywords" value="{$cates.keywords}"></p>
+		<p>描叙：<textarea name="desc" id="desc">{$cates.desc}</textarea>
+		<p>栏目内容：<textarea name="content" id="container">{$cates.content}</textarea></p>
+		<p>栏目类型：
+			<label><input {if condition="$cates['type'] eq 1"}checked="checked"{/if} type="radio" name="type" value="1">文章列表</label>
+			<label><input {if condition="$cates['type'] eq 2"}checked="checked"{/if} type="radio" name="type" value="2">单页</label>
+			<label><input {if condition="$cates['type'] eq 3"}checked="checked"{/if} type="radio" name="type" value="3">图片列表</label>
+		</p>
+		<p><input type="submit" value="提交"> <input type="reset" value="重置"></p>
+	</form>
+
+	 <script type="text/javascript">
+        var ue = UE.getEditor('container',{
+        	initialFrameWidth:800,
+        	 //默认的编辑区域高度
+            initialFrameHeight:300,
+            imagePathFormat: "/php/thinkphp/public/uploads/image/{yyyy}{mm}{dd}/{time}{rand:6}",
+			imageUrlPrefix: "http://127.0.0.1"
+        });
+    </script>
+</body>
+</html>

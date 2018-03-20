@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加页</title>
+	
+    <!-- 配置文件 -->
+    <script type="text/javascript" charset="utf-8" src="__STATIC__/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" charset="utf-8" src="__STATIC__/ueditor/ueditor.all.js"></script>
+   <script type="text/javascript" charset="utf-8" src="__STATIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<style type="text/css">
+		textarea {
+		   vertical-align: top;
+		}
+	</style>
+</head>
+<body>
+	<form method="post" action="" enctype="multipart/form-data">
+		<p>文章标题：<input type="text" name="title" id="title"></p>
+		<p>文章作者：<input type="text" name="author" id="author"></p>
+		<p>关键词：<input type="text" name="keywords" id="keywords"></p>
+		<p>描叙：<textarea name="desc" id="desc" cols="30" rows="3"></textarea></p>
+		<p>缩略图：<input type="file" name="thumb" id="thumb"></p>
+		<p>所属栏目：
+			<select name="cateid">
+				<option value="0">顶级文章</option>
+				{volist name="data" id='v'}
+					<option value="{$v.id}">{if condition="$v['level'] neq 0"}|{/if}<?php echo str_repeat('-',$v['level']*2);?>{$v.catename}</option>
+				{/volist}
+			</select>
+		</p>
+		<p>文章内容：<textarea name="content" id="container"></textarea></p>
+		<p><input type="submit" value="提交"> <input type="reset" value="重置"></p>
+	</form>
+
+    <script type="text/javascript">
+        var ue = UE.getEditor('container',{
+        	initialFrameWidth:800,
+        	 //默认的编辑区域高度
+            initialFrameHeight:300,
+            imagePathFormat: "/php/thinkphp/public/uploads/image/{yyyy}{mm}{dd}/{time}{rand:6}",
+			imageUrlPrefix: "http://127.0.0.1"
+        });
+    </script>
+
+</body>
+</html>

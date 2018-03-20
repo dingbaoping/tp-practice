@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加页</title>
+<!-- 	<link rel="stylesheet" type="text/css" href="__STATIC__/css/main.css"> -->
+</head>
+<body>
+	<form method="post" action="">
+		<p>中文名称：<input type="text" name="cnname" id="cnname"></p>
+		<p>英文名称：<input type="text" name="enname" id="enname"></p>
+		<p>配置类型：
+			<select name="type">
+				<option value="0">请选择</option>
+				<option value="1">单行文本</option>
+				<option value="2">多行文本</option>
+				<option value="3">单选按钮</option>
+				<option value="4">复选框</option>
+				<option value="5">下拉菜单</option>
+			</select>
+		</p>
+		<p>可选值：<textarea name="values" id="values" cols="30" rows="2"></textarea></p>
+		<p><input type="submit" value="提交"> <input type="reset" value="重置"></p>
+	</form>
+</body>
+</html>

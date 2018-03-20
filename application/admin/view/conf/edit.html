@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>修改页</title>
+</head>
+<body>
+	<form method="post" action="">
+		<input type="hidden" name="id" value="{$data.id}">
+		<p>中文名称：<input type="text" name="cnname" id="cnname" value="{$data.cnname}"></p>
+		<p>英文名称：<input type="text" name="enname" id="enname" value="{$data.enname}"></p>
+		<p>配置类型：
+			<select name="type">
+				<option value="0">请选择</option>
+				<option value="1" {if condition="$data.type eq 1"}selected="selected"{/if}>单行文本</option>
+				<option value="2" {if condition="$data.type eq 2"}selected="selected"{/if}>多行文本</option>
+				<option value="3" {if condition="$data.type eq 3"}selected="selected"{/if}>单选按钮</option>
+				<option value="4" {if condition="$data.type eq 4"}selected="selected"{/if}>复选框</option>
+				<option value="5" {if condition="$data.type eq 5"}selected="selected"{/if}>下拉菜单</option>
+			</select>
+		</p>
+		<p>可选值：<textarea name="values" id="values" cols="30" rows="2">{$data.values}</textarea></p>
+		<p><input type="submit" value="提交"> <input type="reset" value="重置"></p>
+	</form>
+</body>
+</html>

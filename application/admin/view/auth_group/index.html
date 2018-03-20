@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/css/main.css">
+</head>
+<body>
+	<!-- 头部 -->
+	<div class="header">
+		<h3>欢迎来到用户详情页</h3>
+		<div>
+			<span>{$Request.session.username}</span>&emsp;
+			<span><a href="{:url('admin/loginout')}">退出登录</a></span>&emsp;
+			<span><a href="{:url('admin/edit',array('id'=>$Request.session.id))}">修改密码</a></span>&emsp;
+			<span><a href="{:url('index/index')}">网站首页</a></span>
+		</div>
+	</div>
+	<div class="cont">
+		{include file="public/menu" /}
+		<div class="content">
+			<a href="{:url('auth_group/add')}" class="add">添加</a>
+				<table>
+					<thead>
+						<tr>
+							<td>id</td>
+							<td>用户组名称</td>
+							<td>启用状态</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+					<tbody>
+						{volist name="data" id="v"}
+						<tr>
+							<td>{$v.id}</td>
+							<td>{$v.title}</td>	 
+							<td>
+								{if condition="$v.status eq 1"}
+								启用
+								{else /}
+								未启用
+								{/if}
+							</td>
+							<td>
+								<a href="{:url('auth_group/edit',array('id'=>$v['id']))}" class="update">编辑</a>
+								<a href="{:url('auth_group/del',array('id'=>$v['id']))}" class="detele">删除</a>
+							</td>
+						</tr>
+						{/volist}
+					</tbody>
+				</table>
+			{$data->render()}
+		</div>
+	</div>
+</body>
+</html>

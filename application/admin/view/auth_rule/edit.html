@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>编辑页</title>
+</head>
+<body>
+	<form method="post" action="">
+		<input type="hidden" name="id" value="{$data.id}">
+		<p>上级权限：
+			<select name="pid">
+				<option value="0">顶级栏目</option>
+				{volist name="authres" id="v"}
+				<option {if condition="$data['pid'] eq $v['id']"}selected="selected"{/if} value="{$v.id}">{if condition="$v['level'] neq 0"}|{/if}<?php echo str_repeat('-',$v['level']*2);?>{$v.title}</option>
+				{/volist}
+			</select>
+		</p>
+		<p>权限名称：<input type="text" name="title" id="title" value="{$data.title}"></p>
+		<p>控制器\方法名称：<input type="text" name="name" id="name" value="{$data.name}"></p>
+		<p><input type="submit" value="提交"> <input type="reset" value="重置"></p>
+	</form>
+</body>
+</html>

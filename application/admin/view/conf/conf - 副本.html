@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网站配置项</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/css/main.css">
+	<style type="text/css">
+	.header{padding-left: 30px;padding-right: 30px;}
+	.header h3{float: left;}
+	.header div{float: right;line-height: 60px;}
+
+	.content{overflow: hidden;}
+	table{
+		width: 70%;
+		text-align: center;
+		border-spacing: 0;
+		border-collapse: 0;
+		border: 1px #ccc solid;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 10px;
+	}
+	table td{border: 1px #ccc solid;}
+	table thead td{line-height: 40px;}
+
+	.sort {padding: 5px 10px;}
+	.sort input{
+		width: 380px;
+		text-align: center;
+		line-height: 1.6;
+		font-size: 16px;
+	}
+	.sortSubmit{
+		text-align: center;
+		margin-top: 20px;		
+	}
+	.sortSubmit input{
+		line-height: 2;
+		font-size: 18px;
+	}
+	</style>
+</head>
+<body>
+	<!-- 头部 -->
+	<div class="header">
+		<h3>欢迎来到用户详情页</h3>
+		<div>
+			<span>{$Request.session.username}</span>&emsp;
+			<span><a href="{:url('admin/loginout')}">退出登录</a></span>&emsp;
+			<span><a href="{:url('admin/edit',array('id'=>$Request.session.id))}">修改密码</a></span>&emsp;
+			<span><a href="{:url('index/index')}">首页详情页</a></span>
+		</div>
+	</div>
+	<div class="content">
+		<form action="" method="post">
+			<table>
+				<thead>
+					<tr>
+						<td>配置名称</td>
+						<td>配置值</td>
+					</tr>
+				</thead>
+				<tbody>
+					{volist name='data' id='v'}
+					<tr>
+						<td>{$v.cnname}</td>	 
+						<td class="sort">
+							{switch $v.type}
+							    {case value="1"}
+							    	<input type="text" name="value" id="value" value="{$v.value}">
+							    {/case}
+							    {case value="2"}
+							    	<textarea name="value"></textarea>
+							    {/case}
+							    {case value="3"}
+							    	{if condition="$v.values"}
+							    	$arr=explode(',',$v['values']);
+							    	print_r($arr);
+							    	var_dump($arr);
+							    	{/if}
+							    	
+							    	
+							    	
+							    {/case}
+							    {case value="4"}复选框{/case}
+							    {case value="5"}下拉菜单{/case}
+							    {default /}
+							{/switch}
+						</td>
+					</tr>
+					{/volist}
+				</tbody>
+			</table>
+			<div class="sortSubmit"><input type="submit" value="排序"></div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文章首页</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/css/main.css">
+</head>
+<body>
+	<!-- 头部 -->
+	<div class="header">
+		<h3>欢迎来到用户详情页</h3>
+		<div>
+			<span>{$Request.session.username}</span>&emsp;
+			<span><a href="{:url('admin/loginout')}">退出登录</a></span>&emsp;
+			<span><a href="{:url('admin/edit',array('id'=>$Request.session.id))}">修改密码</a></span>&emsp;
+			<span><a href="{:url('index/index')}">网站首页</a></span>
+		</div>
+	</div>
+	<div class="cont">
+		{include file="public/menu" /}
+		<div class="content">
+			<a href="{:url('article/add')}" class="add">添加</a>
+
+				<table>
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>标题</td>
+							<td>缩略图</td>
+							<td>作者</td>
+							<td>所属栏目</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+					<tbody>
+					{volist name='data' id='v'}
+						<tr>
+							<td>{$v.id}</td>
+							<td><?php echo mb_substr($v['title'],0,6,'utf-8'); if(strlen($v['title'])>6){echo '...';}?></td>
+							<td>
+								{if condition="$v['thumb'] neq ''"}
+								<img src="{$v.thumb}" width="48">
+								{else/}
+								暂无缩略图
+								{/if}
+							</td>		 
+							<td>{$v.author}</td>
+							<td>{$v.catename}</td>
+							<td>
+								<a href="{:url('article/edit',array('id'=>$v['id']))}" class="update">编辑</a>
+								<a href="{:url('article/del',array('id'=>$v['id']))}" class="detele">删除</a>
+							</td>
+						</tr>
+					{/volist}
+					</tbody>
+				</table>
+			{$data->render()}
+
+		</div>
+	</div>
+</body>
+</html>

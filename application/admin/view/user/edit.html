@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>编辑页</title>
+<!-- 	<link rel="stylesheet" type="text/css" href="__STATIC__/css/main.css"> -->
+</head>
+<body>
+	<form method="post" action="">
+		<input type="hidden" name="id" value="{$data.id}">
+		<p>姓名：<input type="text" size="15" name="username" id="username" value="{$data.username}"></p>
+		<p>性别：
+			<label><input type="radio" name="sex" checked>男</label>
+			<label><input type="radio" name="sex">女</label>
+		</p>
+		<p>年龄：<input type="number" name="age" id="age" value="{$data.age}"></p>
+		<p>描述：<input type="text" name="descr" id="descr" value="{$data.descr}"></p>
+		<p><input type="submit" value="提交"> <input type="reset" value="重置"></p>
+	</form>
+</body>
+</html>

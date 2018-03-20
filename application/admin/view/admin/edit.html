@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>编辑页</title>
+<!-- 	<link rel="stylesheet" type="text/css" href="__STATIC__/css/main.css"> -->
+</head>
+<body>
+	<form method="post" action="">
+		<input type="hidden" name="id" value="{$data.id}">
+		<p>用户所属组：
+			<select name="group_id">
+				{volist name="authGroup" id="v"}
+				<option value="{$v['id']}" {if condition="$groupAccess['group_id'] eq $v['id']"}selected="selected"{/if}>{$v.title}</option>
+				{/volist}}
+			</select>
+		</p>
+		<p>管理员姓名：<input type="text" size="15" name="username" id="username" value="{$data.username}"></p>
+		<p>管理员密码：<input type="text" name="paw" id="paw"></p>
+		<p><input type="submit" value="提交"> <input type="reset" value="重置"></p>
+	</form>
+</body>
+</html>

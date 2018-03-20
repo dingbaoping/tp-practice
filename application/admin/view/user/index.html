@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/css/main.css">
+</head>
+<body>
+	<!-- 头部 -->
+	<div class="header">
+		<h3>欢迎来到用户详情页</h3>
+		<div>
+			<span>{$Request.session.username}</span>&emsp;
+			<span><a href="{:url('admin/loginout')}">退出登录</a></span>&emsp;
+			<span><a href="{:url('admin/edit',array('id'=>$Request.session.id))}">修改密码</a></span>&emsp;
+			<span><a href="{:url('index/index')}">首页详情页</a></span>
+		</div>
+	</div>
+	<div class="cont">
+		{include file="public/menu" /}
+		<div class="content">
+			<a href="{:url('user/add')}" class="add">添加</a>
+			<table>
+				<thead>
+					<tr>
+						<td>id</td>
+						<td>用户名</td>
+						<td>性别</td>
+						<td>年龄</td>
+						<td>课程</td>
+						<td>描叙</td>
+						<td>操作</td>
+					</tr>
+				</thead>
+				<tbody>
+					{volist name='data' id='v'}
+					<tr>
+						<td>{$v.id}</td>			 
+						<td>{$v.username}</td>
+						<td>{$v.sex}</td>
+						<td>{$v.age}</td>
+						<td>{$v.course_name}</td>
+						<td>{$v.descr}</td>
+						<td>
+							<a href="{:url('user/edit',array('id'=>$v['id']))}" class="update">编辑</a>
+							<a href="{:url('user/del',array('id'=>$v['id']))}" class="detele">删除</a>
+						</td>
+					</tr>
+					{/volist}
+				</tbody>
+			</table>
+			{$data->render()}
+		</div>
+	</div>
+</body>
+</html>

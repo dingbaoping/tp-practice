@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网站配置项</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/css/main.css">
+	<style type="text/css">
+	.conf {padding: 5px 10px;}
+	.conf input{
+		line-height: 1.6;
+		font-size: 16px;
+	}
+
+	</style>
+</head>
+<body>
+	<!-- 头部 -->
+	<div class="header">
+		<h3>欢迎来到用户详情页</h3>
+		<div>
+			<span>{$Request.session.username}</span>&emsp;
+			<span><a href="{:url('admin/loginout')}">退出登录</a></span>&emsp;
+			<span><a href="{:url('admin/edit',array('id'=>$Request.session.id))}">修改密码</a></span>&emsp;
+			<span><a href="{:url('index/index')}">网站首页</a></span>
+		</div>
+	</div>
+	<div class="cont">
+		{include file="public/menu" /}
+		<div class="content">
+			<form action="" method="post">
+				<table>
+					<thead>
+						<tr>
+							<td>配置名称</td>
+							<td>配置值</td>
+						</tr>
+					</thead>
+					<tbody>
+					{volist name="data" id="v"}
+						<tr>
+							<td>{$v.cnname}</td>	 
+							<td class="conf">
+								{switch $v.type}
+								    {case value="1"}
+								    	<input type="text" name="{$v.enname}" value="{$v.value}">
+								    {/case}
+								    {case value="2"}
+								    	<textarea name="{$v.enname}">{$v.value}</textarea>
+								    {/case}
+								    {case value="3"}
+								    	{if condition="$v.values"}
+								    	<?php $arr=explode(',',$v['values']);?>
+								    	{/if}
+								    	{volist name="arr" id="v1"}
+								    	<label><input type="radio" {if condition="$v.value eq $v1"}checked="checked"{/if} name="{$v.enname}" value="{$v1}">{$v1}</label>
+								    	{/volist}					    	
+								    {/case}
+								    {case value="4"}
+								    	 <label><input type="checkbox" {if condition="$v.value eq $v.values"}checked="checked"{/if} name="{$v.enname}" value="{$v.values}">{$v.values}</label> 
+								    {/case}
+								    {case value="5"}
+								    <?php
+								    	if($v['values']){
+								    		$arr=explode(',',$v['values']);
+								    	}
+								    ?>
+								    <select name="{$v.enname}">
+								     	<?php foreach($arr as $v3): ?>
+								    	<option value="{$v3}" {if condition="$v.value eq $v3"}selected="selected"{/if}>{$v3}</option>
+								    	<?php endforeach;?>
+								    </select>
+									
+								    {/case}
+								    {default /}
+								{/switch}
+							</td>
+						</tr>
+						{/volist}
+					</tbody>
+				</table>
+				<div class="sortSubmit"><input type="submit" value="修改配置"></div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

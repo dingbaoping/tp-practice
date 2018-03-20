@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加页</title>
+<!-- 	<link rel="stylesheet" type="text/css" href="__STATIC__/css/main.css"> -->
+</head>
+<body>
+	<form method="post" action="">
+		<p>姓名：<input type="text" name="username" id="username"></p>
+		<p>性别：
+			<label><input type="radio" name="sex" checked value="男">男</label>
+			<label><input type="radio" name="sex" value="女">女</label>
+		</p>
+		<p>年龄：<input type="number" name="age" id="age"></p>
+		<p>课程ID：
+			<select name="course_id">
+				{volist name="data" id='v'}
+					<option value="{$v.course_id}">{$v.course_name}</option>
+				{/volist}
+			</select>
+		</p>
+		<p>课程名称：<input type="text" name="course_name" id="course_name"></p>
+		<p>描述：<input type="text" name="descr" id="descr"></p>
+		<p><input type="submit" value="提交"> <input type="reset" value="重置"></p>
+	</form>
+</body>
+</html>
